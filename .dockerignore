@@ -1,0 +1,9 @@
+.venv
+pycache/
+.pycache
+.pyc
+.db
+.sqlite
+.gitignore
+.git
+tests
