@@ -18,8 +18,18 @@ def test_register_user_creates_new_user():
     assert response.json()["user"]["username"] == username
 
 def test_login_returns_jwt_token():
+    username = f"test_user{str(time.time())}"
+
+    requests.post(
+        f"{BASE_URL}/api/auth/register",
+        json={
+            "username": username,
+            "password": "test_password"
+        }
+    )
+
     response = requests.post(f"{BASE_URL}/api/auth/login", json={
-        "username": "test_user1779134132.726491",
+        "username": username,
         "password": "test_password"
     })
     assert response.status_code == 200
