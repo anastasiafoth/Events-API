@@ -52,6 +52,9 @@ jobs:
       - name: Push docker image to Docker hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/events-api:latest
 
+      - name: Trigger render redeploy
+        run: curl -X POST ${{ secrets.RENDER_REDEPLOY_URL }}
+
       - name: stop docker container
         if: always()
         run: docker stop events-api
